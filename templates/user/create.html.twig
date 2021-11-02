@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Crear usuario{% endblock %}
+{% block stylesheets %}{{ parent() }}{% endblock %}
+{% block body %}
+<div class="container">
+	{# <main class=""> #}
+		<div class="card mt-4">
+		    <div class="card-body">
+			  	<div class="">
+			    	<h4>Usuario | Agregar Usuario</h4>
+				</div>
+			</div>
+		</div>
+	    <div class="card mt-4">
+		  <div class="card-body">
+
+			  <form action="{{ path('user.store')}}" method="POST">
+			  	
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="name">Nombre</label>
+						<input type="text" name="name" class="form-control" id="name" required>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="last_name">Apellido</label>
+						<input type="text" name="last_name" class="form-control" id="last_name" required>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="email">Correo eléctronico</label>
+						<input type="email" name="email" class="form-control" id="email" required>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="document">Cedula</label>
+						<input type="text" name="document" class="form-control" id="document" required>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="password">Contraseña</label>
+						<input type="password" name="password" class="form-control" id="password" required>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="password-confirmation">Confimación de contraseña</label>
+						<input type="password" name="password-confirmation" class="form-control" id="password-confirmation" required>
+					</div>
+				</div>
+				<div class="col-12 mt-3 text-center">
+                    	<a href="{{path('user.index')}}" class="btn btn-sm btn-secondary">
+                        Volver
+                    	</a>
+                    	<button type="submit" class="btn btn-sm btn-success">
+                    	Aceptar
+                    	</button>
+            	  </div>
+			  </form>
+		  </div>
+		</div>
+    {# </main> #}
+</div>
+{% endblock %}
+

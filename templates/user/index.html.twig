@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    {# <h1>Hello {{ controller_name }}! ✅</h1> #}
+    <main class=" py-4">
+	    <div class="card">
+		  <div class="card-body">
+
+		    <div class="row align-items-end">
+	            <div class="col-lg-6 col-md-6">
+	                <h4>Listado de usuarios</h4>
+	            </div>
+	            <div class="col-lg-6 col-md-6">
+	            	<a href="{{ path('user.create') }}" class="btn btn-primary float-right">Crear usuarios</a>
+	                  {# <a title="Registrar Usuario" data-toggle="modal" data-target="#createModal" class="btn btn-secondary text-white float-right" style="background: #6c63ff;">Registrar cliente</a> #}
+	            </div>
+	        </div>
+	        <div class="table-responsive py-4">
+		        <table class="table" width="100%" cellspacing="0">
+				  <thead class="thead-dark">
+				    <tr>
+				      <th scope="col">Id</th>
+				      <th scope="col">Nombre</th>
+				      <th scope="col">Apellido</th>
+				      <th scope="col">Correo eléctronico</th>
+				      <th class="text-center">Accición</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				  {% for user in data_users %}
+
+				    <tr>
+				      <th scope="row">{{ user.Id }}</th>
+				      <td>{{ user.Name }}</td>
+				      <td>{{ user.LastName }}</td>
+				      <td>{{ user.Email }}</td>
+
+				      <td class="text-center">
+				      	<div class="btn-group">
+					      	<a title="Detalles Usuario" href="{{ path('user.show', { id: user.Id } ) }}">
+	                            <button class="btn pt-0" style="background: white;"><i class="fas fa-eye" style="font-size: 20px;"></i></button>
+	                        </a>
+
+	                        <a title="Editar Usuario" href="{{ path('user.edit', { id: user.Id } ) }}">
+	                            <button class="btn pt-0" style="background: white;"><i class="fas fa-edit" style="font-size: 20px;"></i></button>
+	                        </a>
+	                  
+	                        <form action="{{ path('user.destroy', { id: user.Id } ) }}" method="post">
+							    {# the argument of csrf_token() is an arbitrary string used to generate the token #}
+							    <input type="hidden" name="token" value="{{ csrf_token('delete-user') }}"/>
+
+							    <button title="Eliminar Usuario" type="submit" class="btn pt-0" 
+		                                class="btn btn-danger text-white mr-2 text-capitalize"
+		                                style="background: white">
+		                                <i class="fas fa-trash-alt" style="font-size: 20px; color: red"></i>
+		                        </button>
+							</form>
+
+                  		</div>
+                      </td>
+
+				    </tr>
+	
+				  {% endfor %}
+				  </tbody>
+				</table>
+			</div>
+		  </div>
+		  {% if data_users|length  == 0 %}
+                <div class="card">
+                    <div class="card-body text-center">
+                        No tiene usuarios registrados.
+                    </div>
+                </div>
+          {% endif %}
+		</div>
+    </main>
+</div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+{% endblock %}

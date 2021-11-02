@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+        {% block stylesheets %}
+            {#{{ encore_entry_link_tags('app') }}#}
+            <link rel="stylesheet" href="{{ asset('css/bootstrap.css')}}">
+            <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}">
+            <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+            <link href="{{ asset('template/css/styles.css')}}" rel="stylesheet" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+        {% endblock %}
+
+        {# {% block javascripts %} #}
+            {#{{ encore_entry_script_tags('app') }}#}
+{#             <script src="{{ asset('js/bootstrap.js') }}"></script>
+            <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script> #}
+        {# {% endblock %} #}
+    </head>
+    <body class="sb-nav-fixed" style="background-color: #eaebef;">
+    <div>
+    {{ include('template_sb_admin/nav.html.twig') }}
+
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            {{ include('template_sb_admin/sidenav.html.twig') }}
+        </div>
+        <div id="layoutSidenav_content">
+                <main class="container">
+                    {% block body %}{% endblock %}
+                </main>
+            {{ include('template_sb_admin/footer.html.twig') }}
+        </div>
+    </div>
+    </div>
+            
+        {% block javascripts %}
+            {#{{ encore_entry_script_tags('app') }}#}
+            <script src="{{ asset('js/bootstrap.js') }}"></script>
+            <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+            <script src="{{ asset('template/js/scripts.js') }}"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+            <script src="{{ asset('template/assets/demo/chart-area-demo.js') }}"></script>
+            <script src="{{ asset('template/assets/demo/chart-bar-demo.js') }}"></script>
+            <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+            <script src="{{ asset('template/js/datatables-simple-demo.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>
